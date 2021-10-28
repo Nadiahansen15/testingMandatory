@@ -19,5 +19,5 @@ from keaNet import urls as keaNet_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('keaNet/', include(keaNet_urls)),
+    path('', include(keaNet_urls)),
 ]

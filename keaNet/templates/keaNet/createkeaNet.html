@@ -1,8 +1,48 @@
 {% extends "keaNet/base.html" %}
+{% block javascript %}
+  <script>
+    $("#id_InternetConnection").change(function () {
+        var InternetConnection = $(this).val();
+     
+      $.ajax({
+        url: '/ajax/cal_Total_Price/',
+        data: {
+          'InternetConnection': InternetConnection
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data) {
+            $("input[name=totalPrice]").val(data.totalPrice);
+            console.log(data.totalPrice)
+          }
+        }
+      });
+    });
+    $("#id_Phonelines").change(function () {
+        var Phonelines = $(this).val();
+     
+      $.ajax({
+        url: '/ajax/cal_Total_Price/',
+        data: {
+          'Phonelines': Phonelines
+        },
+        dataType: 'json',
+        success: function (data) {
+          if (data) {
+            $("input[name=totalPrice]").val(data.totalPrice);
+            console.log(data.totalPrice)
+          }
+        }
+      });
+    });
+  </script>
+{% endblock %}
+
 {% block content %}
 <form action="/createkeaNet/" method="post">
     {% csrf_token %}
-    {{ form }}
-    <input type="submit" value="Submit">
+    {{ form.as_p }}
+    <p id="test">"test"</p>
+    <button type="submit">Save</button>
 </form>
 {% endblock %}
