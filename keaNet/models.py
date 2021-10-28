@@ -9,8 +9,7 @@ from django import forms
 class keaNet(models.Model):
     InternetConnection = models.BooleanField()
     PhoneLines = models.IntegerField(validators=[MaxValueValidator(8)])
-    cellphone = models.ManyToManyField(cellphone)
-    FilteredSelectMultiple
+    cellphone = models.ForeignKey(cellphone, on_delete = models.CASCADE, default = None)
     totalPrice = models.FloatField()
 
 
@@ -24,11 +23,9 @@ class keaNetForm(forms.ModelForm):
 
     class Meta:
         model = keaNet
-        # exclude = ('totalprice')
         fields = '__all__'
         labels = {
             "InternetConnection": ("Internet connection"),
             "PhoneLines": ("Phone Lines"),
             "cellphone": ("cell Phones"),
-            "totalPrice": ("Total Price"),
         }
