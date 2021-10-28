@@ -14,12 +14,15 @@ class keaNet(models.Model):
     cellphone = models.ForeignKey(cellphone, on_delete = models.CASCADE, default = None)
     totalPrice = models.FloatField()
 
+
 def __str__(self):
     return '{} {} {} {}'.format(self.InternetConnection, self.PhoneLines, self.cellphone, self.totalPrice)
 
+#wihu
+
 class keaNetForm(forms.ModelForm):
     def init(self, args, **kwargs):
-            super(keaNetForm, self).__init__(args, **kwargs)
+        super(keaNetForm, self).__init__(args, **kwargs)
 
     class Meta:
         model = keaNet

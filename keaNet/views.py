@@ -7,6 +7,7 @@ from django.http import JsonResponse
 # Create your views here.
 # https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
 
+
 class keaNetFormView(CreateView):
     model = keaNet
     template_name = "keaNet/createkeaNet.html"
