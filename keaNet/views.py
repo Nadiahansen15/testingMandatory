@@ -1,7 +1,6 @@
-from django.shortcuts import render
-from django.shortcuts import render, redirect, get_object_or_404
+from django.views.generic.edit import CreateView
+from django.views.generic.edit import ListView
 from .models import keaNet, keaNetForm
-from django.views.generic import FormView, ListView, CreateView
 
 # Create your views here.
 # https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
