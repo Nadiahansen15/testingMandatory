@@ -1,8 +1,7 @@
 from django.views.generic.edit import CreateView
 from django.views.generic.edit import ListView
 from .models import keaNet, keaNetForm
-from django.views.generic import FormView, ListView, CreateView
-from django.http import JsonResponse
+from django.views.generic import ListView, CreateView
 
 
 # Create your views here.
@@ -17,7 +16,7 @@ class keaNetFormView(CreateView):
 
     # Checks if data input is valid and saves object
     def form_valid(self, form):
-        obj = form.save(commit = False)
+        obj = form.save(commit=False)
         print(obj.InternetConnection, "heeeeeeeeeey!!!!!", obj.cellphone.price)
         if (obj.InternetConnection == True):
             obj.totalPrice += 200
