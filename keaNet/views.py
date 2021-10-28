@@ -6,6 +6,7 @@ from django.views.generic import FormView, ListView, CreateView
 # Create your views here.
 # https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
 
+
 class keaNetFormView(CreateView):
     model = keaNet
     template_name = "keaNet/createkeaNet.html"
@@ -14,9 +15,10 @@ class keaNetFormView(CreateView):
 
     # Checks if data input is valid and saves object
     def form_valid(self, form):
-        obj = form.save(commit = False)
+        obj = form.save(commit=False)
         obj.save()
         return super().form_valid(form)
+
 
 class keaNetView(ListView):
     model = keaNet
