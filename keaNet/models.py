@@ -15,12 +15,14 @@ class keaNet(models.Model):
     FilteredSelectMultiple
     totalPrice = models.FloatField()
 
+
 def __str__(self):
     return '{} {} {} {}'.format(self.InternetConnection, self.PhoneLines, self.cellphone, self.totalPrice)
 
+
 class keaNetForm(forms.ModelForm):
     def init(self, args, **kwargs):
-            super(keaNetForm, self).__init__(args, **kwargs)
+        super(keaNetForm, self).__init__(args, **kwargs)
 
     class Meta:
         model = keaNet
