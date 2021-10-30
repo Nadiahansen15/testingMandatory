@@ -20,7 +20,7 @@ def __str__(self):
 
 #wihu
 
-class keaNetForm(forms.ModelForm):
+class keaNetForm(ModelForm):
     def init(self, args, **kwargs):
         super(keaNetForm, self).__init__(args, **kwargs)
 
