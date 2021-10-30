@@ -16,10 +16,9 @@ class keaNet(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
 
-def __str__(self):
-    return '{} {} {} {}'.format(self.InternetConnection, self.PhoneLines, self.cellphone, self.totalPrice)
+    def __str__(self):
+        return '{} {} {} {}'.format(self.InternetConnection, self.PhoneLines, self.cellphone, self.totalPrice)
 
-#wihu
 
 class keaNetForm(ModelForm):
     def init(self, args, **kwargs):
