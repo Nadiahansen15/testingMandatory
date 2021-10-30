@@ -27,6 +27,7 @@ class keaNetForm(ModelForm):
     class Meta:
         model = keaNet
         fields = '__all__'
+        exclude = ['totalPrice']
         labels = {
             "InternetConnection": ("Internet connection"),
             "PhoneLines": ("Phone Lines"),
