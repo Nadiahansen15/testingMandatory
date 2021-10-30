@@ -1,48 +1,56 @@
 {% extends "keaNet/base.html" %}
 {% block javascript %}
   <script>
-    $("#id_InternetConnection").change(function () {
-        var InternetConnection = $(this).val();
-     
-      $.ajax({
-        url: '/ajax/cal_Total_Price/',
-        data: {
-          'InternetConnection': InternetConnection
-        },
-        dataType: 'json',
-        success: function (data) {
-          if (data) {
-            $("input[name=totalPrice]").val(data.totalPrice);
-            console.log(data.totalPrice)
-          }
-        }
-      });
-    });
-    $("#id_Phonelines").change(function () {
-        var Phonelines = $(this).val();
-     
-      $.ajax({
-        url: '/ajax/cal_Total_Price/',
-        data: {
-          'Phonelines': Phonelines
-        },
-        dataType: 'json',
-        success: function (data) {
-          if (data) {
-            $("input[name=totalPrice]").val(data.totalPrice);
-            console.log(data.totalPrice)
-          }
-        }
-      });
-    });
-  </script>
+    var form = document.querySelector('form');
+    form.addEventListener('change', function() {
+        var InternetConnection = document.getElementById('id_InternetConnection').value;
+        var total
+            if (InternetConnection == "on") {
+                InternetConnection = 200;
+                total =+ InternetConnection
+            }
+            else {total = 0}
+        var PhoneLines = document.getElementById('id_PhoneLines').value;
+        var cellphone = document.getElementById('id_cellphone').value;
+            console.log(PhoneLines + "Phonelines")
+            console.log(cellphone + "celphone")
+            if (cellphone == "1") {
+                    cellphone = 800;
+                }
+            if (cellphone == "2") {
+                    cellphone = 6000;
+                }
+            if (cellphone == "3") {
+                cellphone = 1000;
+            }
+            if (cellphone == "4") {
+                    cellphone = 900;
+                }
+            if (cellphone == "5") {
+                cellphone = 900;
+            }
+        var total = (InternetConnection*1) + (PhoneLines*150) + (cellphone*1);
+        document.getElementById('price').innerHTML = "Total price: "+total+" DKK";
+});
+
+$('#submit').click(function(){
+   if($.trim($('#price').val()) == ''){
+      alert('Input can not be left blank, you have to select something');
+   }
+});
+</script>
 {% endblock %}
 
 {% block content %}
+<div style="padding: 15px;">
+<div style="border-style: solid; height: 300px; width: 500px;padding: 15px;">
+<h1>KEANet</h1>
 <form action="/createkeaNet/" method="post">
     {% csrf_token %}
     {{ form.as_p }}
-    <p id="test">"test"</p>
-    <button type="submit">Save</button>
+    <p id="price"></p>
+    <button id='submit' type="submit">Buy</button>
 </form>
+</div>
+</div>
 {% endblock %}

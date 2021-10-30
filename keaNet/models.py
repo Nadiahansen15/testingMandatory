@@ -12,7 +12,7 @@ class keaNet(models.Model):
     InternetConnection = models.BooleanField()
     PhoneLines = models.IntegerField(validators=[MaxValueValidator(8)])
     cellphone = models.ForeignKey(cellphone, on_delete = models.CASCADE, default = None)
-    totalPrice = models.FloatField()
+    totalPrice = models.FloatField(blank=True)
 
 
 def __str__(self):

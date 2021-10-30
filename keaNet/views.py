@@ -19,33 +19,12 @@ class keaNetFormView(CreateView):
         obj = form.save(commit = False)
         print(obj.InternetConnection, "heeeeeeeeeey!!!!!", obj.cellphone.price)
         if (obj.InternetConnection == True):
-            obj.totalPrice += 200
+            intcon = 200
 
-        obj.totalPrice += obj.PhoneLines * 150 + obj.cellphone.price
+        obj.totalPrice =+ obj.PhoneLines * 150 + obj.cellphone.price + intcon
         
         obj.save()
         return super().form_valid(form)
-
-'''
-def cal_Total_Price(request):
-    InternetConnection = request.GET.get('InternetConnection', None)
-    PhoneLines = request.GET.get('PhoneLines', None)
-    cellphone = request.GET.get('cellphone', None)
-    totalPrice = request.GET.get('totalPrice', None)
-    
-    print(InternetConnection)
-
-    if (InternetConnection == 'on'):
-        totalPrice =+ 200
-    elif (PhoneLines < 8):
-        sumf = PhoneLines*150
-        sumf =+ totalPrice
-
-    data = {
-        "totalPrice": totalPrice 
-    }
-    return JsonResponse(data)
-'''
 
 class keaNetView(ListView):
     model = keaNet
