@@ -13,6 +13,7 @@ class keaNet(models.Model):
     PhoneLines = models.IntegerField(validators=[MaxValueValidator(8)])
     cellphone = models.ForeignKey(cellphone, on_delete = models.CASCADE, default = None)
     totalPrice = models.FloatField(blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
 
 def __str__(self):
@@ -27,7 +28,7 @@ class keaNetForm(ModelForm):
     class Meta:
         model = keaNet
         fields = '__all__'
-        exclude = ['totalPrice']
+        exclude = ['totalPrice', 'created_at']
         labels = {
             "InternetConnection": ("Internet connection"),
             "PhoneLines": ("Phone Lines"),

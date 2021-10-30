@@ -1,15 +1,15 @@
 {% extends "keaNet/base.html" %}
 {% block javascript %}
+<script src="http://malsup.github.com/jquery.form.js"></script>
+
   <script>
     var form = document.querySelector('form');
     form.addEventListener('change', function() {
         var InternetConnection = document.getElementById('id_InternetConnection').value;
-        var total
+        console.log(InternetConnection)
             if (InternetConnection == "on") {
                 InternetConnection = 200;
-                total =+ InternetConnection
             }
-            else {total = 0}
         var PhoneLines = document.getElementById('id_PhoneLines').value;
         var cellphone = document.getElementById('id_cellphone').value;
             console.log(PhoneLines + "Phonelines")
@@ -29,14 +29,8 @@
             if (cellphone == "5") {
                 cellphone = 900;
             }
-        var total = (InternetConnection*1) + (PhoneLines*150) + (cellphone*1);
+        var total = (InternetConnection) + (PhoneLines*150) + (cellphone*1);
         document.getElementById('price').innerHTML = "Total price: "+total+" DKK";
-});
-
-$('#submit').click(function(){
-   if($.trim($('#price').val()) == ''){
-      alert('Input can not be left blank, you have to select something');
-   }
 });
 </script>
 {% endblock %}
