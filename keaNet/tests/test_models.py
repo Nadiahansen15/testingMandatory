@@ -36,7 +36,7 @@ class testModels(TestCase):
 # test for edit of price
     def test_totalprice_can_be_new_price(self):
         data = self.keaNet
-        if (data.InternetConnection == True):
+        if (data.InternetConnection is True):
             Connection = 200
         data.totalPrice = (data.PhoneLines*150) + data.cellphone.price + Connection
         self.assertTrue(isinstance(data, keaNet))
@@ -44,7 +44,7 @@ class testModels(TestCase):
 
     def test_internetConnection_add_to_price(self):
         data = self.keaNet
-        if (data.InternetConnection == True):
+        if (data.InternetConnection is True):
             Connection = 200
         data.totalPrice = + data.totalPrice + Connection
         self.assertTrue(isinstance(data, keaNet))
@@ -52,7 +52,7 @@ class testModels(TestCase):
 
     def test_internetConnection_noAdd_to_price(self):
         data = self.keaNet1
-        if (data.InternetConnection == False):
+        if (data.InternetConnection is False):
             connection = 0
         data.totalPrice = + connection
         self.assertEqual(data.totalPrice, 0)

@@ -1,10 +1,6 @@
-from django.test import TestCase, Client, RequestFactory
+from django.test import TestCase
 from django.urls import reverse
-from keaNet.models import keaNet
-from cellphone.models import cellphone
-import json
 from django.utils import timezone
-from keaNet.views import keaNetView, keaNetFormView
 
 
 class TestViews(TestCase):

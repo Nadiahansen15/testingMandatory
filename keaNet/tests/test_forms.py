@@ -1,4 +1,3 @@
-import datetime
 from django.test import TestCase
 from django.utils import timezone
 from keaNet.models import keaNetForm, keaNet
@@ -58,5 +57,5 @@ class TestForms(TestCase):
         form = keaNetForm()
         self.assertTrue(form.fields['cellphone'].label == 'cell Phones')
 
-    def test_new_price_for_adding_item(self):
-        form = keaNetForm()
+    # def test_new_price_for_adding_item(self):
+        # form = keaNetForm()

@@ -1,7 +1,6 @@
 from django.contrib import admin
 from .models import keaNet
-from django import forms
-from cellphone.models import cellphone, cellphoneForm
+from cellphone.models import cellphoneForm
 
 
 # Register your models here.

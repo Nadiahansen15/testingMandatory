@@ -1,7 +1,5 @@
-from django.shortcuts import render, redirect, get_object_or_404
 from .models import keaNet, keaNetForm
-from django.views.generic import FormView, ListView, CreateView
-from django.utils import timezone
+from django.views.generic import ListView, CreateView
 
 # Create your views here.
 # https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
@@ -17,7 +15,7 @@ class keaNetFormView(CreateView):
     def form_valid(self, form):
         obj = form.save(commit=False)
         print(obj.InternetConnection, "heeeeeeeeeey!!!!!", obj.cellphone.price)
-        if (obj.InternetConnection == True):
+        if (obj.InternetConnection is True):
             intcon = 200
         else:
             intcon = 0
