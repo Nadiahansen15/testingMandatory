@@ -33,6 +33,22 @@ jobs:
         pip install coverage
         coverage run manage.py test
         coverage report
+    - name: AutoPep8
+      run: |
+        pip install autopep8
+        autopep8 -i ./keaNet/tests/test_models.py
+        autopep8 -i ./keaNet/tests/test_views.py
+        autopep8 -i ./keaNet/tests/test_forms.py
+        autopep8 -i ./keaNet/tests/test_urls.py
+        autopep8 -i ./keaNet/views.py
+        autopep8 -i ./keaNet/admin.py
+        autopep8 -i ./keaNet/models.py
+    - name: Lint with flake8
+      run: |
+        pip install flake8
+        flake8 --ignore --show-pep8 ./keaNet
+        flake8 . --count --select=E9,F63,F7,F82 --show-source --statistics
+        flake8 . --count --exit-zero --max-complexity=10 --max-line-length=127 --statistics
     - name: Django Tests
       run: |
         python3 manage.py test

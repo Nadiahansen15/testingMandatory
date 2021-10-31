@@ -6,12 +6,12 @@ from django.utils import timezone
 
 
 class testModels(TestCase):
-#before tests are run
+    # before tests are run
     def setUp(self):
         self.cellphone = cellphone.objects.create(
             cellphone="Kussomaten",
             price=4000)
-        
+
         self.keaNet = keaNet.objects.create(
             InternetConnection=True,
             PhoneLines=2,
@@ -33,10 +33,10 @@ class testModels(TestCase):
         self.assertTrue(isinstance(data, cellphone))
         self.assertEqual(str(data), "Kussomaten")
 
-#test for edit of price
+# test for edit of price
     def test_totalprice_can_be_new_price(self):
         data = self.keaNet
-        if (data.InternetConnection==True):
+        if (data.InternetConnection == True):
             Connection = 200
         data.totalPrice = (data.PhoneLines*150) + data.cellphone.price + Connection
         self.assertTrue(isinstance(data, keaNet))
@@ -44,22 +44,20 @@ class testModels(TestCase):
 
     def test_internetConnection_add_to_price(self):
         data = self.keaNet
-        if (data.InternetConnection==True):
-                Connection = 200
-        data.totalPrice =+ data.totalPrice + Connection
+        if (data.InternetConnection == True):
+            Connection = 200
+        data.totalPrice = + data.totalPrice + Connection
         self.assertTrue(isinstance(data, keaNet))
         self.assertEqual(data.totalPrice, 200)
 
     def test_internetConnection_noAdd_to_price(self):
         data = self.keaNet1
-        if (data.InternetConnection==False):
-                connection = 0
-        data.totalPrice =+ connection
+        if (data.InternetConnection == False):
+            connection = 0
+        data.totalPrice = + connection
         self.assertEqual(data.totalPrice, 0)
-        
+
     def test_count_of_phonelines(self):
         data = self.keaNet1
-        data.totalPrice =+ (data.PhoneLines*150)
+        data.totalPrice = +(data.PhoneLines*150)
         self.assertEqual(data.totalPrice, 450)
-
-    
