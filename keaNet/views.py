@@ -15,7 +15,7 @@ class keaNetFormView(CreateView):
 
     # Checks if data input is valid and saves object
     def form_valid(self, form):
-        obj = form.save(commit = False)
+        obj = form.save(commit=False)
         print(obj.InternetConnection, "heeeeeeeeeey!!!!!", obj.cellphone.price)
         if (obj.InternetConnection == True):
             intcon = 200
