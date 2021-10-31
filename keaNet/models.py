@@ -11,10 +11,9 @@ from django.contrib import admin
 class keaNet(models.Model):
     InternetConnection = models.BooleanField()
     PhoneLines = models.IntegerField(validators=[MaxValueValidator(8)])
-    cellphone = models.ForeignKey(cellphone, on_delete = models.CASCADE, default = None)
+    cellphone = models.ForeignKey(cellphone, on_delete=models.CASCADE, default=None)
     totalPrice = models.FloatField(blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-
 
     def __str__(self):
         return '{} {} {} {}'.format(self.InternetConnection, self.PhoneLines, self.cellphone, self.totalPrice)

@@ -8,6 +8,7 @@ from cellphone.models import cellphone, cellphoneForm
 
 class SystemAdmin(admin.ModelAdmin):
     form = cellphoneForm
-    filter_horizontal = ['cellphone',]
+    filter_horizontal = ['cellphone', ]
+
 
 admin.site.register(keaNet)

@@ -22,8 +22,8 @@ class keaNetFormView(CreateView):
         else:
             intcon = 0
 
-        obj.totalPrice =+ obj.PhoneLines * 150 + obj.cellphone.price + intcon
-        
+        obj.totalPrice = + obj.PhoneLines * 150 + obj.cellphone.price + intcon
+
         obj.save()
         return super().form_valid(form)
 
@@ -31,7 +31,7 @@ class keaNetFormView(CreateView):
 class keaNetView(ListView):
     model = keaNet
     template_name = "keaNet/keanetoverview.html"
-    
+
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         LastAdded = keaNet.objects.all().order_by('-created_at',)[0:1]

@@ -6,6 +6,7 @@ import json
 from django.utils import timezone
 from keaNet.views import keaNetView, keaNetFormView
 
+
 class TestViews(TestCase):
 
     def test_view_url_exists_at_desired_location(self):
@@ -20,7 +21,7 @@ class TestViews(TestCase):
         response = self.client.get(reverse('keanetoverview'))
         self.assertEqual(response.status_code, 200)
         self.assertTemplateUsed(response, 'keaNet/keanetoverview.html')
-    
+
     def test_keaNet_create_post(self):
         url = reverse('createkeaNet')
         response = self.client.post(url, {
@@ -31,4 +32,3 @@ class TestViews(TestCase):
             'created_at': timezone.now(),
         })
         self.assertEqual(response.status_code, 200)
-
