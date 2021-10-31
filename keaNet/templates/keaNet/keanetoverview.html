@@ -1,14 +1,21 @@
 {% extends "keaNet/base.html" %}
 {% block content %}
-  <h1>keaNet</h1>
+<div style="padding: 15px;">
+<div style="padding: 15px; border: solid; height: 300px; width: 500px;">
+<h1>Purchase</h1>
 <ul>
-    {% for keaNet in object_list %}
-    <li> {{ keaNet.InternetConnection }}</li>
-    <li> {{ keaNet.cellphone.cellphone }}</li>  
+    {% for keaNet in last_added %}
+    <li> Added InternetConnection: {{ keaNet.InternetConnection }}</li>
+    <li> Number of phonelines: {{ keaNet.PhoneLines }}</li> 
+    <li> Cellphone: {{ keaNet.cellphone.cellphone }}</li>  
+    <li> Total Price: {{ keaNet.totalPrice }}</li> 
+
 
     <hr/>
     {% empty %}
     <li>is empty</li>
-    {% endfor %}
+    {% endfor %} 
 </ul>
+</div>
+</div>
 {% endblock %}

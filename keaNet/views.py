@@ -1,8 +1,7 @@
-from django.views.generic.edit import CreateView
-from django.views.generic.edit import ListView
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import keaNet, keaNetForm
-from django.views.generic import ListView, CreateView
-
+from django.views.generic import FormView, ListView, CreateView
+from django.utils import timezone
 
 # Create your views here.
 # https://simpleisbetterthancomplex.com/tutorial/2016/08/29/how-to-work-with-ajax-request-with-django.html
@@ -19,34 +18,22 @@ class keaNetFormView(CreateView):
         obj = form.save(commit=False)
         print(obj.InternetConnection, "heeeeeeeeeey!!!!!", obj.cellphone.price)
         if (obj.InternetConnection == True):
-            obj.totalPrice += 200
+            intcon = 200
+        else:
+            intcon = 0
 
-        obj.totalPrice += obj.PhoneLines * 150 + obj.cellphone.price
+        obj.totalPrice =+ obj.PhoneLines * 150 + obj.cellphone.price + intcon
         
         obj.save()
         return super().form_valid(form)
 
-'''
-def cal_Total_Price(request):
-    InternetConnection = request.GET.get('InternetConnection', None)
-    PhoneLines = request.GET.get('PhoneLines', None)
-    cellphone = request.GET.get('cellphone', None)
-    totalPrice = request.GET.get('totalPrice', None)
-    
-    print(InternetConnection)
-
-    if (InternetConnection == 'on'):
-        totalPrice =+ 200
-    elif (PhoneLines < 8):
-        sumf = PhoneLines*150
-        sumf =+ totalPrice
-
-    data = {
-        "totalPrice": totalPrice 
-    }
-    return JsonResponse(data)
-'''
 
 class keaNetView(ListView):
     model = keaNet
     template_name = "keaNet/keanetoverview.html"
+    
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        LastAdded = keaNet.objects.all().order_by('-created_at',)[0:1]
+        context['last_added'] = LastAdded
+        return context
